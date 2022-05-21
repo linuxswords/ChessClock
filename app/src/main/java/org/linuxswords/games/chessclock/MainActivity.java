@@ -1,12 +1,9 @@
 package org.linuxswords.games.chessclock;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.view.View;
+import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class MainActivity extends Activity
 {

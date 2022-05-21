@@ -5,8 +5,9 @@ import java.util.concurrent.TimeUnit;
 
 public class PlayerClock
 {
+    public static final String DISPLAY_TIME_FORMAT = "%d:%d";  // make this configurable
     private final PausableCountDownTimer countDownTimer;
-    private TextView view;
+    private final TextView view;
     private final long startTimeInMillis;
 
     public PlayerClock(long initialSeconds, TextView view)
@@ -34,7 +35,7 @@ public class PlayerClock
 
     private static String convertMillisIntoDisplayableTime(Long millisUntilFinished)
     {
-        return String.format("%d:%d",
+        return String.format(DISPLAY_TIME_FORMAT,
             TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
             TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))
@@ -49,21 +50,18 @@ public class PlayerClock
 
     public PlayerClock start()
     {
-        System.out.println("start called");
         this.countDownTimer.start();
         return this;
     }
 
     public PlayerClock restart()
     {
-        System.out.println("restart called");
         this.countDownTimer.restart();
         return this;
     }
 
     public PlayerClock pause()
     {
-        System.out.println("pause called");
         this.countDownTimer.pause();
         return this;
     }
