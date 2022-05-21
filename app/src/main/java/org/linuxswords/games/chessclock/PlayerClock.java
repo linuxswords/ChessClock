@@ -34,7 +34,7 @@ public class PlayerClock
 
     private static String convertMillisIntoDisplayableTime(Long millisUntilFinished)
     {
-        return String.format("%dm %ds",
+        return String.format("%d:%d",
             TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
             TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))

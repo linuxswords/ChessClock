@@ -13,7 +13,9 @@ public class MainActivity extends Activity
 
     // create variables of the two class
     private Gyroscope gyroscope;
-
+    private PlayerClock leftClock;
+    private PlayerClock rightClock;
+    long startTime = 5L * 60L;  // make this configurable
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,35 +26,56 @@ public class MainActivity extends Activity
 
         TextView leftClockView = findViewById(R.id.clockLeft);
         TextView rightClockView = findViewById(R.id.clockRight);
-        long startTime = 5L * 60L;
 
-        PlayerClock leftClock = new PlayerClock(startTime, leftClockView).start().pause().showStartTime();
-        PlayerClock rightClock = new PlayerClock(startTime, rightClockView).start().pause().showStartTime();
+        leftClock = new PlayerClock(startTime, leftClockView).showStartTime();
+        rightClock = new PlayerClock(startTime, rightClockView).showStartTime();
 
         gyroscope = new Gyroscope(this);
+        gyroscope.setListener(this::clockHasTilted);
 
-        gyroscope.setListener((rx, ry, rz) -> {
-            if (rz > 0.5f) {
-                leftClock.pause();
-                rightClock.start();
-            }
-            else if (rz < -0.5f) {
-                leftClock.start ();
-                rightClock.pause();
-            }
-        });
+        // pause button
+        findViewById(R.id.pauseButton).setOnClickListener(v -> this.pauseAllClocks());
+
+        // reset button
+        findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
     }
 
-    // create on resume method
+    private void clockHasTilted(float rx, float ry, float rz)
+    {
+        if (rz > 0.5f) {
+            leftClock.pause();
+            rightClock.start();
+        }
+        else if (rz < -0.5f) {
+            leftClock.start();
+            rightClock.pause();
+        }
+//            play sound here ?
+    }
+
+    private void pauseAllClocks()
+    {
+        leftClock.pause();
+        rightClock.pause();
+    }
+
+    private void restartAllClocks()
+    {
+        leftClock.restart().showStartTime();
+        rightClock.restart().showStartTime();
+    }
+
+
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         gyroscope.register();
     }
 
-    // create on pause method
     @Override
-    protected void onPause() {
+    protected void onPause()
+    {
         super.onPause();
         gyroscope.unregister();
     }
