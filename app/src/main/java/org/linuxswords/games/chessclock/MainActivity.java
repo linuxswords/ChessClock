@@ -48,6 +48,8 @@ public class MainActivity extends Activity
         // settings
         findViewById(R.id.settingsButton).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
+        // exit
+        findViewById(R.id.exitButton).setOnClickListener(v -> this.finishAffinity());
     }
 
     private void initializeSoundTriggers()
