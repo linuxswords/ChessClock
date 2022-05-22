@@ -21,9 +21,9 @@
   <TextView
     android:id="@+id/clockRight"
     android:textStyle="bold"
-    android:layout_width="196dp"
-    android:layout_height="111dp"
-    android:layout_marginStart="100dp"
+    android:layout_width="254dp"
+    android:layout_height="113dp"
+    android:layout_marginStart="32dp"
     android:fontFamily="sans-serif"
     android:text="@string/clockRight"
     android:textSize="96sp"
@@ -31,7 +31,7 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintStart_toEndOf="@+id/clockLeft"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.416"/>
+    app:layout_constraintVertical_bias="0.403"/>
   <TextView
     android:id="@+id/textView2"
     android:layout_width="wrap_content"
