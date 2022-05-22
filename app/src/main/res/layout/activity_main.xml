@@ -9,24 +9,25 @@
   tools:context=".MainActivity">
   <ImageButton
     android:id="@+id/pauseButton"
-    android:layout_width="83dp"
-    android:layout_height="64dp"
+    android:layout_width="104dp"
+    android:layout_height="92dp"
     android:src="@android:drawable/ic_media_pause"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/restartButton"
+    app:layout_constraintEnd_toStartOf="@+id/clockRight"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/clockLeft"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.847"/>
+    app:layout_constraintVertical_bias="0.398"/>
   <ImageButton
     android:id="@+id/restartButton"
     android:layout_width="76dp"
     android:layout_height="47dp"
     android:src="@android:drawable/stat_notify_sync"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/pauseButton"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.832"/>
+    app:layout_constraintVertical_bias="0.673"/>
   <ImageButton
     android:id="@+id/settingsButton"
     android:layout_width="52dp"
@@ -34,34 +35,35 @@
     android:src="@android:drawable/ic_menu_manage"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.96"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/imageButton"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.93"/>
-  <TextView
-    android:id="@+id/clockLeft"
-    android:textStyle="bold"
-    android:layout_width="250dp"
-    android:layout_height="116dp"
-    android:layout_marginStart="124dp"
-    android:text="@string/clockLeft"
-    android:textSize="96sp"
+    app:layout_constraintVertical_bias="0.933"/>
+  <ImageButton
+    android:id="@+id/imageButton"
+    android:layout_width="42dp"
+    android:layout_height="43dp"
+    android:layout_marginStart="650dp"
+    android:layout_marginEnd="30dp"
+    android:src="@android:drawable/ic_lock_power_off"
     app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+    app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.408"/>
+    app:layout_constraintVertical_bias="0.922"/>
   <TextView
     android:id="@+id/clockRight"
     android:textStyle="bold"
-    android:layout_width="259dp"
-    android:layout_height="119dp"
-    android:layout_marginStart="132dp"
+    android:layout_width="250dp"
+    android:layout_height="116dp"
     android:fontFamily="sans-serif"
     android:text="@string/clockRight"
     android:textSize="96sp"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/clockLeft"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toEndOf="@+id/pauseButton"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.406"/>
   <TextView
@@ -74,6 +76,19 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.104"/>
+  <TextView
+    android:id="@+id/clockLeft"
+    android:textStyle="bold"
+    android:layout_width="250dp"
+    android:layout_height="116dp"
+    android:text="@string/clockLeft"
+    android:textSize="96sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/pauseButton"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.408"/>
   <ToggleButton
     android:id="@+id/soundToggleButton"
     android:layout_width="61dp"
