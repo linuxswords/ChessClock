@@ -1,9 +1,12 @@
 package org.linuxswords.games.chessclock.time;
 
+import android.graphics.Color;
 import android.widget.TextView;
 
 public class PlayerClock
-{ private final PausableCountDownTimer countDownTimer;
+{
+    public static final int BACKGROUND_COLOR = Color.parseColor("#403E3E");
+    private final PausableCountDownTimer countDownTimer;
     private final TextView view;
     private final long startTimeInMillis;
 
@@ -40,6 +43,8 @@ public class PlayerClock
     public PlayerClock start()
     {
         this.countDownTimer.start();
+        this.view.setBackgroundColor(Color.WHITE);
+        this.view.setTextColor(BACKGROUND_COLOR);
         return this;
     }
 
@@ -52,6 +57,8 @@ public class PlayerClock
     public PlayerClock pause()
     {
         this.countDownTimer.pause();
+        this.view.setBackgroundColor(BACKGROUND_COLOR);
+        this.view.setTextColor(Color.WHITE);
         return this;
     }
 }
