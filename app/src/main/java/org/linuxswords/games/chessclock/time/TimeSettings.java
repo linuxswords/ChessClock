@@ -2,6 +2,7 @@ package org.linuxswords.games.chessclock.time;
 
 public enum TimeSettings
 {
+    TEST(2, 0),
     THREE_PLUS_ZERO(3, 0),
     THREE_PLUS_FIVE(3, 5),
     FIVE_PLUS_ZERO(5, 0),
