@@ -62,5 +62,18 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.832"/>
+  <ToggleButton
+    android:id="@+id/soundToggleButton"
+    android:layout_width="81dp"
+    android:layout_height="46dp"
+    android:text="ToggleButton"
+    android:textOff="sound off"
+    android:textOn="sound on"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.071"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.898"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,16 +5,17 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class MainActivity extends Activity
 {
-
-    // create variables of the two class
     private Gyroscope gyroscope;
     private PlayerClock leftClock;
     private PlayerClock rightClock;
     long startTime = 5L * 60L;  // make this configurable
     private MediaPlayer mediaPlayer;
+
+    private boolean isSilent = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,8 +38,14 @@ public class MainActivity extends Activity
 
         // reset button
         findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
+
+        // sound stuff
         mediaPlayer = MediaPlayer.create(this, R.raw.punch);
         mediaPlayer.setLooping(false);
+        findViewById(R.id.soundToggleButton).setOnClickListener(button -> {
+            isSilent = !isSilent;
+        });
+
     }
 
     private void clockHasTilted(float rx, float ry, float rz)
@@ -56,7 +63,9 @@ public class MainActivity extends Activity
     }
 
     private void triggerSound(){
-        mediaPlayer.start();
+        if (!isSilent) {
+            mediaPlayer.start();
+        }
     }
 
     private void pauseAllClocks()
