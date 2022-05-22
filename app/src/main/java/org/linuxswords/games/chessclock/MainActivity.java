@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import org.linuxswords.games.chessclock.time.PlayerClock;
@@ -59,15 +60,18 @@ public class MainActivity extends Activity
     private void clockHasTilted(float rx, float ry, float rz)
     {
         if (rz > 0.5f) {
-            leftClock.pause();
-            rightClock.start();
-            triggerSound();
+            toggleSwitch(rightClock, leftClock);
         }
         else if (rz < -0.5f) {
-            leftClock.start();
-            rightClock.pause();
-            triggerSound();
+            toggleSwitch(leftClock, rightClock);
         }
+    }
+
+    private void toggleSwitch(PlayerClock toActivate, PlayerClock toPause)
+    {
+        toActivate.start();
+        toPause.pause();
+        triggerSound();
     }
 
     private void triggerSound(){
