@@ -58,4 +58,9 @@ public abstract class PausableCountDownTimer
         remainingTime = millisUntilFinished;
         isPaused = true;
     }
+
+    public long getRemainingTime()
+    {
+        return remainingTime;
+    }
 }

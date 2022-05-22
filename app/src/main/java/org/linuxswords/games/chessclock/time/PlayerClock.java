@@ -6,6 +6,8 @@ import android.widget.TextView;
 public class PlayerClock
 {
     public static final int BACKGROUND_COLOR = Color.parseColor("#403E3E");
+    private static final int WARN_COLOR = Color.RED;
+    private static final long WARN_THRESH_HOLD_IN_MILLIS = 1L * 60L * 1_000L;
     private final PausableCountDownTimer countDownTimer;
     private final TextView view;
     private final long startTimeInMillis;
@@ -21,14 +23,18 @@ public class PlayerClock
             public void onTimerTick(Long millisUntilFinished)
             {
                 String timeText = TimeFormatter.convertMillisIntoDisplayableTime(millisUntilFinished);
+                if(millisUntilFinished<WARN_THRESH_HOLD_IN_MILLIS) {
+                    view.setTextColor(WARN_COLOR);
+                }
+
                 view.setText(timeText);
             }
 
             @Override
             public void onTimerFinish()
             {
-                view.setText("ur dead");
-
+                view.setTextColor(WARN_COLOR);
+                view.setText("lost");
             }
         };
     }
@@ -43,8 +49,9 @@ public class PlayerClock
     public PlayerClock start()
     {
         this.countDownTimer.start();
+
         this.view.setBackgroundColor(Color.WHITE);
-        this.view.setTextColor(BACKGROUND_COLOR);
+        this.view.setTextColor(getDynamicText_Color(this.countDownTimer.getRemainingTime(), BACKGROUND_COLOR));
         return this;
     }
 
@@ -58,7 +65,16 @@ public class PlayerClock
     {
         this.countDownTimer.pause();
         this.view.setBackgroundColor(BACKGROUND_COLOR);
-        this.view.setTextColor(Color.WHITE);
+        this.view.setTextColor(getDynamicText_Color(this.countDownTimer.getRemainingTime(), Color.WHITE));
         return this;
+    }
+
+    private int getDynamicText_Color(long currentTimeInMillis, int fallBackColor)
+    {
+        int result =fallBackColor;
+        if (currentTimeInMillis <= WARN_THRESH_HOLD_IN_MILLIS) {
+            result = WARN_COLOR;
+        }
+        return result;
     }
 }
