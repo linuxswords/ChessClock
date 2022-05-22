@@ -1,4 +1,4 @@
-package org.linuxswords.games.chessclock;
+package org.linuxswords.games.chessclock.time;
 
 import java.util.concurrent.TimeUnit;
 

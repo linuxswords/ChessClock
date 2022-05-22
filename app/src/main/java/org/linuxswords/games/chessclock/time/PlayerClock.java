@@ -1,18 +1,17 @@
-package org.linuxswords.games.chessclock;
+package org.linuxswords.games.chessclock.time;
 
 import android.widget.TextView;
-import java.util.concurrent.TimeUnit;
 
 public class PlayerClock
 { private final PausableCountDownTimer countDownTimer;
     private final TextView view;
     private final long startTimeInMillis;
 
-    public PlayerClock(long initialSeconds, TextView view)
+    public PlayerClock(long initialMilliseconds, TextView view)
     {
-        this.startTimeInMillis = initialSeconds * 1_000L;
+        this.startTimeInMillis = initialMilliseconds;
         this.view = view;
-        countDownTimer = new PausableCountDownTimer(initialSeconds * 1_000L)
+        countDownTimer = new PausableCountDownTimer(initialMilliseconds)
         {
 
             @Override

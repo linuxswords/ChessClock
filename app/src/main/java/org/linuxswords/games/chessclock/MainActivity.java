@@ -1,18 +1,20 @@
 package org.linuxswords.games.chessclock;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.ToggleButton;
+import org.linuxswords.games.chessclock.time.PlayerClock;
+import org.linuxswords.games.chessclock.time.TimeSettingsManager;
 
 public class MainActivity extends Activity
 {
     private Gyroscope gyroscope;
     private PlayerClock leftClock;
     private PlayerClock rightClock;
-    long startTime = 5L * 60L;  // make this configurable
+    private final TimeSettingsManager timeSettingsManager = TimeSettingsManager.instance();
     private MediaPlayer mediaPlayer;
 
     private boolean isSilent = true;
@@ -27,8 +29,8 @@ public class MainActivity extends Activity
         TextView leftClockView = findViewById(R.id.clockLeft);
         TextView rightClockView = findViewById(R.id.clockRight);
 
-        leftClock = new PlayerClock(startTime, leftClockView).showStartTime();
-        rightClock = new PlayerClock(startTime, rightClockView).showStartTime();
+        leftClock = new PlayerClock(timeSettingsManager.getCurrent().minutesAsMilliSeconds(), leftClockView).showStartTime();
+        rightClock = new PlayerClock(timeSettingsManager.getCurrent().minutesAsMilliSeconds(), rightClockView).showStartTime();
 
         gyroscope = new Gyroscope(this);
         gyroscope.setListener(this::clockHasTilted);
@@ -42,15 +44,16 @@ public class MainActivity extends Activity
         // sound stuff
         initializeSoundTriggers();
 
+        // settings
+        findViewById(R.id.settingsButton).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
+
     }
 
     private void initializeSoundTriggers()
     {
         mediaPlayer = MediaPlayer.create(this, R.raw.punch);
         mediaPlayer.setLooping(false);
-        findViewById(R.id.soundToggleButton).setOnClickListener(button -> {
-            isSilent = !isSilent;
-        });
+        findViewById(R.id.soundToggleButton).setOnClickListener(button -> isSilent = !isSilent);
     }
 
     private void clockHasTilted(float rx, float ry, float rz)

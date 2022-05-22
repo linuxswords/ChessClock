@@ -1,0 +1,22 @@
+package org.linuxswords.games.chessclock.time;
+
+public class TimeSettingsManager
+{
+    private TimeSettings current = TimeSettings.FIVE_PLUS_ZERO;
+    private static final TimeSettingsManager instance = new TimeSettingsManager();
+    private TimeSettingsManager(){}
+    public TimeSettings getCurrent()
+    {
+        return current;
+    }
+
+    public void setCurrent(TimeSettings current)
+    {
+        this.current = current;
+    }
+
+    public static TimeSettingsManager instance(){
+        return instance;
+    }
+
+}
