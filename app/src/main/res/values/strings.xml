@@ -1,6 +1,6 @@
 <resources>
   <string name="app_name">ChessClock</string>
-  <string name="clockLeft">5:00</string>
-  <string name="clockRight">5:00</string>
+  <string name="clockLeft">15:00</string>
+  <string name="clockRight">15:00</string>
   <string name="title">linuxswords chess</string>
 </resources>

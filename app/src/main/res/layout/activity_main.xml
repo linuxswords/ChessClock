@@ -9,8 +9,8 @@
   <TextView
     android:id="@+id/clockLeft"
     android:textStyle="bold"
-    android:layout_width="222dp"
-    android:layout_height="115dp"
+    android:layout_width="250dp"
+    android:layout_height="116dp"
     android:layout_marginStart="124dp"
     android:text="@string/clockLeft"
     android:textSize="96sp"
@@ -21,9 +21,9 @@
   <TextView
     android:id="@+id/clockRight"
     android:textStyle="bold"
-    android:layout_width="254dp"
-    android:layout_height="113dp"
-    android:layout_marginStart="32dp"
+    android:layout_width="259dp"
+    android:layout_height="119dp"
+    android:layout_marginStart="132dp"
     android:fontFamily="sans-serif"
     android:text="@string/clockRight"
     android:textSize="96sp"
@@ -31,7 +31,7 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintStart_toEndOf="@+id/clockLeft"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.403"/>
+    app:layout_constraintVertical_bias="0.406"/>
   <TextView
     android:id="@+id/textView2"
     android:layout_width="wrap_content"
@@ -64,11 +64,11 @@
     app:layout_constraintVertical_bias="0.832"/>
   <ToggleButton
     android:id="@+id/soundToggleButton"
-    android:layout_width="81dp"
-    android:layout_height="46dp"
+    android:layout_width="61dp"
+    android:layout_height="47dp"
     android:text="ToggleButton"
-    android:textOff="sound off"
-    android:textOn="sound on"
+    android:textOff="sound"
+    android:textOn="sound"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.071"
