@@ -40,12 +40,17 @@ public class MainActivity extends Activity
         findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
 
         // sound stuff
+        initializeSoundTriggers();
+
+    }
+
+    private void initializeSoundTriggers()
+    {
         mediaPlayer = MediaPlayer.create(this, R.raw.punch);
         mediaPlayer.setLooping(false);
         findViewById(R.id.soundToggleButton).setOnClickListener(button -> {
             isSilent = !isSilent;
         });
-
     }
 
     private void clockHasTilted(float rx, float ry, float rz)
