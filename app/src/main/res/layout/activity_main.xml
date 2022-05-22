@@ -5,7 +5,39 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="#403E3E"
   tools:context=".MainActivity">
+  <ImageButton
+    android:id="@+id/pauseButton"
+    android:layout_width="83dp"
+    android:layout_height="64dp"
+    android:src="@android:drawable/ic_media_pause"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/restartButton"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.847"/>
+  <ImageButton
+    android:id="@+id/restartButton"
+    android:layout_width="76dp"
+    android:layout_height="47dp"
+    android:src="@android:drawable/stat_notify_sync"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/pauseButton"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.832"/>
+  <ImageButton
+    android:id="@+id/settingsButton"
+    android:layout_width="52dp"
+    android:layout_height="49dp"
+    android:src="@android:drawable/ic_menu_manage"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.96"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.93"/>
   <TextView
     android:id="@+id/clockLeft"
     android:textStyle="bold"
@@ -42,26 +74,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.104"/>
-  <ImageButton
-    android:id="@+id/pauseButton"
-    android:layout_width="83dp"
-    android:layout_height="64dp"
-    android:src="@android:drawable/ic_media_pause"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/restartButton"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.847"/>
-  <ImageButton
-    android:id="@+id/restartButton"
-    android:layout_width="76dp"
-    android:layout_height="47dp"
-    android:src="@android:drawable/stat_notify_sync"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/pauseButton"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.832"/>
   <ToggleButton
     android:id="@+id/soundToggleButton"
     android:layout_width="61dp"
