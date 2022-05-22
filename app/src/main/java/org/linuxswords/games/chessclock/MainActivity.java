@@ -1,6 +1,7 @@
 package org.linuxswords.games.chessclock;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ public class MainActivity extends Activity
     private PlayerClock leftClock;
     private PlayerClock rightClock;
     long startTime = 5L * 60L;  // make this configurable
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +37,8 @@ public class MainActivity extends Activity
 
         // reset button
         findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
+        mediaPlayer = MediaPlayer.create(this, R.raw.punch);
+        mediaPlayer.setLooping(false);
     }
 
     private void clockHasTilted(float rx, float ry, float rz)
@@ -42,12 +46,17 @@ public class MainActivity extends Activity
         if (rz > 0.5f) {
             leftClock.pause();
             rightClock.start();
+            triggerSound();
         }
         else if (rz < -0.5f) {
             leftClock.start();
             rightClock.pause();
+            triggerSound();
         }
-//            play sound here ?
+    }
+
+    private void triggerSound(){
+        mediaPlayer.start();
     }
 
     private void pauseAllClocks()
