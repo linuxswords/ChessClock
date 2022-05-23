@@ -22,9 +22,6 @@ public class SettingsActivity extends Activity
         // cancel
         findViewById(R.id.settingsCancelButton).setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
 
-        // sound
-        findViewById(R.id.soundSwitch).setOnClickListener(l -> l.isActivated());  // fixme do something
-
         // exit
         findViewById(R.id.exitButton).setOnClickListener(v -> this.finishAffinity());
     }
@@ -48,11 +45,6 @@ public class SettingsActivity extends Activity
     {
         TimeSettingsManager timeSettingsManager = TimeSettingsManager.instance();
         timeSettingsManager.setCurrent(timeSetting);
-        startActivity(new Intent(this, MainActivity.class));
-    }
-
-    private void setSoundAndCloseView(){
-
         startActivity(new Intent(this, MainActivity.class));
     }
 }
