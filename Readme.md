@@ -12,11 +12,13 @@ a button on your chess clock, tilt the phone towards you.
 ## ideas
 
 * [ ] store your last time setting (profile)
-* [ ] settings: add more sound effects
-* [ ] settings: configure tilting threshold
+* [ ] settings: add sound effects
 * [ ] analog clock?
 
 ## todos
 
-* [x] implement increment
 * [ ] show current time setting on front screen
+* [ ] double tab to reset clock
+* [x] implement increment
+* [x] fix increment bug at start
+* [x] ~~settings: configure tilting threshold~~ figured out a better way to measure tilts
