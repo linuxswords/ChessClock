@@ -26,6 +26,8 @@ public class Gyroscope {
     private Sensor sensor;
     private SensorEventListener sensorEventListener;
 
+    private long timeStampOfLastSignal = 0L;
+
     // create constructor with context as argument
     Gyroscope(Context context) {
 
@@ -43,7 +45,9 @@ public class Gyroscope {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 // check if listener is different from null
-                if (listener != null) {
+                // 500_000_000L is half a second
+                if (listener != null && sensorEvent.timestamp - timeStampOfLastSignal > 500_000_000L) {
+                    timeStampOfLastSignal = sensorEvent.timestamp;
                     // pass the three floats in listener on rotation of axis
                     listener.onRotation(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
                 }
