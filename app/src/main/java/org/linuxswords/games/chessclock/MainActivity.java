@@ -2,7 +2,6 @@ package org.linuxswords.games.chessclock;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -17,10 +16,6 @@ public class MainActivity extends Activity implements TiltListener
 
     private PlayerClock leftClock;
     private PlayerClock rightClock;
-
-    private MediaPlayer mediaPlayer;
-
-    private boolean isSilent = true;
     private TiltSensor tiltSensor;
 
     @Override
@@ -42,13 +37,10 @@ public class MainActivity extends Activity implements TiltListener
         // pause on a single click, show settings on a long click
         findViewById(R.id.parent).setOnClickListener(v -> this.pauseAllClocks());
         findViewById(R.id.parent).setOnLongClickListener(v -> this.showSettingsScreen());
-//        findViewById(R.id.parent).setdouOnLongClickListener(v -> this.showSettingsScreen());
 
-        // reset button
+        // reset button fixme: double click
 //        findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
 
-        // sound stuff
-        initializeSoundTriggers();
     }
 
     private boolean showSettingsScreen(){
@@ -56,24 +48,12 @@ public class MainActivity extends Activity implements TiltListener
         return true;
     }
 
-    private void initializeSoundTriggers()
-    {
-        mediaPlayer = MediaPlayer.create(this, R.raw.punch);
-        mediaPlayer.setLooping(false);
-    }
-
     private void toggleSwitch(PlayerClock toActivate, PlayerClock toPause)
     {
         toActivate.start();
         toPause.pause();
-        triggerSound();
     }
 
-    private void triggerSound(){
-        if (!isSilent) {
-            mediaPlayer.start();
-        }
-    }
 
     private void pauseAllClocks()
     {
