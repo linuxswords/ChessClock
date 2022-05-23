@@ -11,7 +11,8 @@ a button on your chess clock, tilt the phone towards you.
 ## ideas
 
 * [ ] store your last time setting (profile)
-* [ ] add more sound effects -> settings
+* [ ] settings: add more sound effects
+* [ ] settings: configure tilting threshold
 
 ## todos
 
