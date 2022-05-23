@@ -14,11 +14,16 @@ public enum TimeSettings
     ;
 
     public final int minutes;
-    public final int increase;
-    TimeSettings(int minutes, int increase)
+    public final int increment;
+    TimeSettings(int minutes, int increment)
     {
         this.minutes = minutes;
-        this.increase = increase;
+        this.increment = increment;
+    }
+
+    public int getIncrement()
+    {
+        return increment;
     }
 
     public long minutesAsMilliSeconds()

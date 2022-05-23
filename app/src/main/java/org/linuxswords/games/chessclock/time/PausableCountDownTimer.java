@@ -6,11 +6,11 @@ public abstract class PausableCountDownTimer
 {
     private CountDownTimer countDownTimer;
     private long remainingTime = 0L;
-    private long millisUntilFinished = 0L;
+    private long originalStartTime = 0L;
 
     public PausableCountDownTimer(long millisUntilFinished)
     {
-        this.millisUntilFinished = millisUntilFinished;
+        this.originalStartTime = millisUntilFinished;
         this.remainingTime = millisUntilFinished;
     }
 
@@ -55,12 +55,22 @@ public abstract class PausableCountDownTimer
     public void restart()
     {
         countDownTimer.cancel();
-        remainingTime = millisUntilFinished;
+        remainingTime = originalStartTime;
         isPaused = true;
     }
 
     public long getRemainingTime()
     {
         return remainingTime;
+    }
+
+    public void increaseTime(long timeInMillis)
+    {
+        this.remainingTime += timeInMillis;
+    }
+
+    public boolean isPaused()
+    {
+        return isPaused;
     }
 }

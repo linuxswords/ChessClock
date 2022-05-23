@@ -4,18 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import org.linuxswords.games.chessclock.time.PlayerClock;
-import org.linuxswords.games.chessclock.time.TimeSettingsManager;
 
 public class MainActivity extends Activity
 {
     private Gyroscope gyroscope;
     private PlayerClock leftClock;
     private PlayerClock rightClock;
-    private final TimeSettingsManager timeSettingsManager = TimeSettingsManager.instance();
+
     private MediaPlayer mediaPlayer;
 
     private boolean isSilent = true;
@@ -30,8 +28,8 @@ public class MainActivity extends Activity
         TextView leftClockView = findViewById(R.id.clockLeft);
         TextView rightClockView = findViewById(R.id.clockRight);
 
-        leftClock = new PlayerClock(timeSettingsManager.getCurrent().minutesAsMilliSeconds(), leftClockView).showStartTime();
-        rightClock = new PlayerClock(timeSettingsManager.getCurrent().minutesAsMilliSeconds(), rightClockView).showStartTime();
+        leftClock = new PlayerClock(leftClockView).showStartTime();
+        rightClock = new PlayerClock(rightClockView).showStartTime();
 
         gyroscope = new Gyroscope(this);
         gyroscope.setListener(this::clockHasTilted);

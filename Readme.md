@@ -18,5 +18,5 @@ a button on your chess clock, tilt the phone towards you.
 
 ## todos
 
-* [ ] implement increment
+* [x] implement increment
 

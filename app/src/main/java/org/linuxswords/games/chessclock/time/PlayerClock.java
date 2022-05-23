@@ -8,15 +8,17 @@ public class PlayerClock
     public static final int BACKGROUND_COLOR = Color.parseColor("#403E3E");
     private static final int WARN_COLOR = Color.RED;
     private static final long WARN_THRESH_HOLD_IN_MILLIS = 1L * 60L * 1_000L;
+
+    private static final TimeSettingsManager timeSettingsManager = TimeSettingsManager.instance();
     private final PausableCountDownTimer countDownTimer;
     private final TextView view;
     private final long startTimeInMillis;
 
-    public PlayerClock(long initialMilliseconds, TextView view)
+    public PlayerClock(TextView view)
     {
-        this.startTimeInMillis = initialMilliseconds;
+        this.startTimeInMillis = timeSettingsManager.getCurrent().minutesAsMilliSeconds();
         this.view = view;
-        countDownTimer = new PausableCountDownTimer(initialMilliseconds)
+        countDownTimer = new PausableCountDownTimer(startTimeInMillis)
         {
 
             @Override
@@ -63,6 +65,10 @@ public class PlayerClock
 
     public PlayerClock pause()
     {
+        // add increment here
+        if (!this.countDownTimer.isPaused()) {
+            this.countDownTimer.increaseTime(timeSettingsManager.getCurrent().getIncrement() * 1_000L);
+        }
         this.countDownTimer.pause();
         this.view.setBackgroundColor(BACKGROUND_COLOR);
         this.view.setTextColor(getDynamicText_Color(this.countDownTimer.getRemainingTime(), Color.WHITE));
