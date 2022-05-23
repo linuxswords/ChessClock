@@ -4,19 +4,24 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
+import org.linuxswords.games.chessclock.TiltSensor.TiltListener;
 import org.linuxswords.games.chessclock.time.PlayerClock;
 
-public class MainActivity extends Activity
+public class MainActivity extends Activity implements TiltListener
 {
-    private Gyroscope gyroscope;
+    private static final String TAG = "MainActivity";
+    private int currentTiltDegree = 0;
+
     private PlayerClock leftClock;
     private PlayerClock rightClock;
 
     private MediaPlayer mediaPlayer;
 
     private boolean isSilent = true;
+    private TiltSensor tiltSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,8 +36,8 @@ public class MainActivity extends Activity
         leftClock = new PlayerClock(leftClockView).showStartTime();
         rightClock = new PlayerClock(rightClockView).showStartTime();
 
-        gyroscope = new Gyroscope(this);
-        gyroscope.setListener(this::clockHasTilted);
+        tiltSensor = new TiltSensor(this);
+        tiltSensor.setListener(this);
 
         // pause button
         findViewById(R.id.pauseButton).setOnClickListener(v -> this.pauseAllClocks());
@@ -54,17 +59,6 @@ public class MainActivity extends Activity
     {
         mediaPlayer = MediaPlayer.create(this, R.raw.punch);
         mediaPlayer.setLooping(false);
-        findViewById(R.id.soundToggleButton).setOnClickListener(button -> isSilent = !isSilent);
-    }
-
-    private void clockHasTilted(float rx, float ry, float rz)
-    {
-        if (rz > 0.5f) {
-            toggleSwitch(rightClock, leftClock);
-        }
-        else if (rz < -0.5f) {
-            toggleSwitch(leftClock, rightClock);
-        }
     }
 
     private void toggleSwitch(PlayerClock toActivate, PlayerClock toPause)
@@ -97,14 +91,34 @@ public class MainActivity extends Activity
     protected void onResume()
     {
         super.onResume();
-        gyroscope.register();
+        tiltSensor.register();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        gyroscope.unregister();
+        tiltSensor.unregister();
     }
 
+    @Override
+    public void onTilt(int degree)
+    {
+        if (degree != 0) {
+            if (currentTiltDegree == 0) {
+                currentTiltDegree = degree;
+            }
+            else if (Math.signum(currentTiltDegree) != Math.signum(degree)) {
+                currentTiltDegree = degree;
+                Log.d(TAG, "tilted from " + currentTiltDegree + " to " + degree);
+                if (Math.signum(currentTiltDegree) == -1) {
+                    toggleSwitch(leftClock, rightClock);
+                }
+                else {
+                    toggleSwitch(rightClock, leftClock);
+                }
+            }
+        }
+
+    }
 }
