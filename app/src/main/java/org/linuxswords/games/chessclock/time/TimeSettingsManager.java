@@ -2,7 +2,7 @@ package org.linuxswords.games.chessclock.time;
 
 public class TimeSettingsManager
 {
-    private TimeSettings current = TimeSettings.FIVE_PLUS_ZERO;
+    private TimeSettings current = TimeSettings.TEN_PLUS_FIVE;
     private static final TimeSettingsManager instance = new TimeSettingsManager();
     private TimeSettingsManager(){}
     public TimeSettings getCurrent()
