@@ -17,8 +17,20 @@ public class SettingsActivity extends Activity
         setContentView(R.layout.activity_settings);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        setupTimeSettingsButtons();
+
+        // cancel
         findViewById(R.id.settingsCancelButton).setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
 
+        // sound
+        findViewById(R.id.soundSwitch).setOnClickListener(l -> l.isActivated());  // fixme do something
+
+        // exit
+        findViewById(R.id.exitButton).setOnClickListener(v -> this.finishAffinity());
+    }
+
+    private void setupTimeSettingsButtons()
+    {
         findViewById(R.id.timeSettingThreeZero).setOnClickListener(v -> this.setTimeAndCloseView(TimeSettings.FIFTEEN_PLUS_ZERO));
         findViewById(R.id.timeSettingThreePlusFive).setOnClickListener(v -> this.setTimeAndCloseView(TimeSettings.FIFTEEN_PLUS_FIVE));
 
@@ -28,7 +40,6 @@ public class SettingsActivity extends Activity
         findViewById(R.id.timeSettingTenZero).setOnClickListener(v -> this.setTimeAndCloseView(TimeSettings.TEN_PLUS_ZERO));
         findViewById(R.id.timeSettingTenPlusFive).setOnClickListener(v -> this.setTimeAndCloseView(TimeSettings.TEN_PLUS_FIVE));
 
-
         findViewById(R.id.timeSettingFifteenZero).setOnClickListener(v -> this.setTimeAndCloseView(TimeSettings.FIFTEEN_PLUS_ZERO));
         findViewById(R.id.timeSettingFifteenPlusFive).setOnClickListener(v -> this.setTimeAndCloseView(TimeSettings.FIFTEEN_PLUS_FIVE));
     }
@@ -37,6 +48,11 @@ public class SettingsActivity extends Activity
     {
         TimeSettingsManager timeSettingsManager = TimeSettingsManager.instance();
         timeSettingsManager.setCurrent(timeSetting);
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    private void setSoundAndCloseView(){
+
         startActivity(new Intent(this, MainActivity.class));
     }
 }

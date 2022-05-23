@@ -39,20 +39,21 @@ public class MainActivity extends Activity implements TiltListener
         tiltSensor = new TiltSensor(this);
         tiltSensor.setListener(this);
 
-        // pause button
-        findViewById(R.id.pauseButton).setOnClickListener(v -> this.pauseAllClocks());
+        // pause on a single click, show settings on a long click
+        findViewById(R.id.parent).setOnClickListener(v -> this.pauseAllClocks());
+        findViewById(R.id.parent).setOnLongClickListener(v -> this.showSettingsScreen());
+//        findViewById(R.id.parent).setdouOnLongClickListener(v -> this.showSettingsScreen());
 
         // reset button
-        findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
+//        findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
 
         // sound stuff
         initializeSoundTriggers();
+    }
 
-        // settings
-        findViewById(R.id.settingsButton).setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
-
-        // exit
-        findViewById(R.id.exitButton).setOnClickListener(v -> this.finishAffinity());
+    private boolean showSettingsScreen(){
+        startActivity(new Intent(this, SettingsActivity.class));
+        return true;
     }
 
     private void initializeSoundTriggers()
