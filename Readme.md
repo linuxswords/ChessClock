@@ -19,4 +19,4 @@ a button on your chess clock, tilt the phone towards you.
 ## todos
 
 * [x] implement increment
-
+* [ ] show current time setting on front screen
