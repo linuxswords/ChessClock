@@ -22,7 +22,9 @@
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toEndOf="@+id/clockLeft"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.318"/>
+    app:layout_constraintVertical_bias="0.318"
+    android:includeFontPadding="false"
+    />
   <TextView
     android:id="@+id/clockLeft"
     android:textStyle="bold"
@@ -37,6 +39,7 @@
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.318"/>
+    app:layout_constraintVertical_bias="0.318"
+    android:includeFontPadding="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
