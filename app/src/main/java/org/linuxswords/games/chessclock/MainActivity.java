@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
-import org.linuxswords.games.chessclock.TiltSensor.TiltListener;
+import org.linuxswords.games.chessclock.listener.DoubleClickListener;
+import org.linuxswords.games.chessclock.sensor.TiltSensor;
+import org.linuxswords.games.chessclock.sensor.TiltSensor.TiltListener;
 import org.linuxswords.games.chessclock.time.PlayerClock;
 
 public class MainActivity extends Activity implements TiltListener
@@ -34,16 +37,26 @@ public class MainActivity extends Activity implements TiltListener
         tiltSensor = new TiltSensor(this);
         tiltSensor.setListener(this);
 
-        // pause on a single click, show settings on a long click
-        findViewById(R.id.parent).setOnClickListener(v -> this.pauseAllClocks());
+        // pause on a single tap, reset on double tap, show settings on a long tap
+        findViewById(R.id.parent).setOnClickListener(new DoubleClickListener()
+        {
+            @Override
+            public void onSingleClick(View v)
+            {
+                pauseAllClocks();
+            }
+
+            @Override
+            public void onDoubleClick(View v)
+            {
+                restartAllClocks();
+            }
+        });
         findViewById(R.id.parent).setOnLongClickListener(v -> this.showSettingsScreen());
-
-        // reset button fixme: double click
-//        findViewById(R.id.restartButton).setOnClickListener(v -> this.restartAllClocks());
-
     }
 
-    private boolean showSettingsScreen(){
+    private boolean showSettingsScreen()
+    {
         startActivity(new Intent(this, SettingsActivity.class));
         return true;
     }

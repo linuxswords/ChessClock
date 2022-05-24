@@ -18,7 +18,7 @@ a button on your chess clock, tilt the phone towards you.
 ## todos
 
 * [ ] show current time setting on front screen
-* [ ] double tab to reset clock
+* [x] double tab to reset clock
 * [x] avoid flickering/to-quick-switches by lowering sensibility
 * [x] implement increment
 * [x] fix increment bug at start

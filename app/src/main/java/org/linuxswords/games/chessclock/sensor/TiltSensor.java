@@ -1,4 +1,4 @@
-package org.linuxswords.games.chessclock;
+package org.linuxswords.games.chessclock.sensor;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -32,7 +32,7 @@ public class TiltSensor implements SensorEventListener
     private float[] mGeomagnetic;
 
     // create constructor with context as argument
-    TiltSensor(Context context)
+    public TiltSensor(Context context)
     {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
