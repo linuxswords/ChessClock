@@ -14,6 +14,7 @@ a button on your chess clock, tilt the phone towards you.
 * [ ] store your last time setting (profile)
 * [ ] settings: add sound effects
 * [ ] analog clock?
+* [ ] simple tap could activate meta info like current time setting/info etc? But I like the single tap pause function
 
 ## todos
 
