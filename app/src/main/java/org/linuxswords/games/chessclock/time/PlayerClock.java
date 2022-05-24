@@ -2,12 +2,12 @@ package org.linuxswords.games.chessclock.time;
 
 import android.graphics.Color;
 import android.widget.TextView;
+import org.linuxswords.games.chessclock.R;
 
 public class PlayerClock
 {
-    public static final int BACKGROUND_COLOR = Color.parseColor("#403E3E");
     private static final int WARN_COLOR = Color.RED;
-    private static final long WARN_THRESH_HOLD_IN_MILLIS = 1L * 60L * 1_000L;
+    private static final long WARN_THRESH_HOLD_IN_MILLIS = 60L * 1_000L;  // one minute
 
     private static final TimeSettingsManager timeSettingsManager = TimeSettingsManager.instance();
     private final PausableCountDownTimer countDownTimer;
@@ -36,7 +36,7 @@ public class PlayerClock
             public void onTimerFinish()
             {
                 view.setTextColor(WARN_COLOR);
-                view.setText("lost");
+                view.setText(R.string.lostMessage);
             }
         };
     }
@@ -48,13 +48,22 @@ public class PlayerClock
         return this;
     }
 
-    public PlayerClock start()
+    public void start()
     {
         this.countDownTimer.start();
+        this.view.setAlpha(1.0F);
+        this.view.setTextColor(getDynamicTextColor(this.countDownTimer.getRemainingTime()));
+    }
 
-        this.view.setBackgroundColor(Color.WHITE);
-        this.view.setTextColor(getDynamicText_Color(this.countDownTimer.getRemainingTime(), BACKGROUND_COLOR));
-        return this;
+    public void pause()
+    {
+        // add increment here
+        if (!this.countDownTimer.isPaused()) {
+            this.countDownTimer.increaseTime(timeSettingsManager.getCurrent().getIncrement() * 1_000L);
+        }
+        this.countDownTimer.pause();
+        this.view.setAlpha(0.5F);
+        this.view.setTextColor(getDynamicTextColor(this.countDownTimer.getRemainingTime()));
     }
 
     public PlayerClock restart()
@@ -63,21 +72,9 @@ public class PlayerClock
         return this;
     }
 
-    public PlayerClock pause()
+    private int getDynamicTextColor(long currentTimeInMillis)
     {
-        // add increment here
-        if (!this.countDownTimer.isPaused()) {
-            this.countDownTimer.increaseTime(timeSettingsManager.getCurrent().getIncrement() * 1_000L);
-        }
-        this.countDownTimer.pause();
-        this.view.setBackgroundColor(BACKGROUND_COLOR);
-        this.view.setTextColor(getDynamicText_Color(this.countDownTimer.getRemainingTime(), Color.WHITE));
-        return this;
-    }
-
-    private int getDynamicText_Color(long currentTimeInMillis, int fallBackColor)
-    {
-        int result =fallBackColor;
+        int result = Color.WHITE;
         if (currentTimeInMillis <= WARN_THRESH_HOLD_IN_MILLIS) {
             result = WARN_COLOR;
         }

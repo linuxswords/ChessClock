@@ -19,6 +19,9 @@ a button on your chess clock, tilt the phone towards you.
 
 * [ ] show current time setting on front screen
 * [ ] double tab to reset clock
+* [ ] avoid flickering/to-quick-switches by lowering sensibility
 * [x] implement increment
 * [x] fix increment bug at start
+* [x] Clock-UI without buttons
+* [x] use alpha instead of background change when tilting
 * [x] ~~settings: configure tilting threshold~~ figured out a better way to measure tilts
