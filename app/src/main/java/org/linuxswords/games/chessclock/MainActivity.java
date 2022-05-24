@@ -11,6 +11,7 @@ import org.linuxswords.games.chessclock.listener.DoubleClickListener;
 import org.linuxswords.games.chessclock.sensor.TiltSensor;
 import org.linuxswords.games.chessclock.sensor.TiltSensor.TiltListener;
 import org.linuxswords.games.chessclock.time.PlayerClock;
+import org.linuxswords.games.chessclock.time.TimeSettingsManager;
 
 public class MainActivity extends Activity implements TiltListener
 {
@@ -36,6 +37,8 @@ public class MainActivity extends Activity implements TiltListener
 
         tiltSensor = new TiltSensor(this);
         tiltSensor.setListener(this);
+
+        this.<TextView>findViewById(R.id.timeSettingDisplay).setText(TimeSettingsManager.instance().getCurrent().getLabel());
 
         // pause on a single tap, reset on double tap, show settings on a long tap
         findViewById(R.id.parent).setOnClickListener(new DoubleClickListener()
