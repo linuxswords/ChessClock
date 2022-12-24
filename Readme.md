@@ -15,6 +15,7 @@ a button on your chess clock.
 * [ ] settings: add sound effects
 * [ ] analog clock?
 * [ ] simple tap could activate meta info like current time setting/info etc? But I like the single tap pause function
+* [ ] show number of moves made
 
 ## todos
 
