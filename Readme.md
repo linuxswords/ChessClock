@@ -5,7 +5,7 @@ inspired by tempest clock.
 
 
 A chess clock that works by tilting your phone. Put your phone onto something that can be tilted and instead of pressing
-a button on your chess clock, tilt the phone towards you.
+a button on your chess clock.
 
 
 
