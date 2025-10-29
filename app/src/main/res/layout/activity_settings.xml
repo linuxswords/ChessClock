@@ -177,7 +177,6 @@
     android:layout_height="60dp"
     android:paddingTop="10dp"
     android:foreground="@android:drawable/ic_lock_power_off"
-    android:includeFontPadding="true"
     android:src="@android:drawable/ic_lock_power_off"
     android:theme="@style/Theme.MaterialComponents"
     app:backgroundTint="@android:color/transparent"
