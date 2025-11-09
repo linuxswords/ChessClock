@@ -22,54 +22,27 @@ a button on your chess clock.
 
 ## Development
 
-### Prerequisites
-
-- JDK 17 or higher
-- Android SDK (API level 21+)
-- Make (optional, for using Makefile)
-
-### Quick Setup
+**Prerequisites:** JDK 17+, Android SDK (API 21+)
 
 ```bash
-# Automated setup (Linux)
-./setup-dev-env.sh
+# Setup
+./setup-dev-env.sh          # Automated setup (Linux)
+make check-env              # Verify environment
 
-# Or verify manually
-make check-env
+# Build
+make build                  # Debug APK
+make build-release          # Release APK
+make install                # Build + install to device
+
+# Test
+make test                   # Unit tests
+make ci                     # Full CI (test + lint + build)
+
+# Help
+make help                   # All commands
 ```
 
-### Building
-
-```bash
-# Using Makefile
-make build          # Build debug APK
-make build-release  # Build release APK
-make install        # Build and install to device
-
-# Using Gradle directly
-./gradlew assembleDebug
-./gradlew assembleRelease
-```
-
-### Testing
-
-```bash
-# Using Makefile
-make test           # Run unit tests
-make test-all       # Run all tests
-make lint           # Run lint checks
-make ci             # Full CI pipeline
-
-# Using Gradle directly
-./gradlew test
-./gradlew connectedAndroidTest
-```
-
-See [TESTING.md](TESTING.md) for detailed testing documentation.
-
-### Available Commands
-
-Run `make help` to see all available Makefile targets.
+See [TESTING.md](TESTING.md) for testing details.
 
 ## ideas
 
