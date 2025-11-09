@@ -19,7 +19,7 @@ Lint (checks)     ─┘
 **Artifacts** (7-day retention):
 - `test-reports` - HTML test reports
 - `lint-reports` - Lint analysis
-- `app-debug` - Debug APK
+- `linuxswords-ChessClock-debug` - Debug APK
 
 ## Usage
 

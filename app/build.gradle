@@ -30,6 +30,13 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     namespace 'org.linuxswords.games.chessclock'
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def buildType = variant.buildType.name
+            outputFileName = "linuxswords-ChessClock-${buildType}.apk"
+        }
+    }
 }
 
 

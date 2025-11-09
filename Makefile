@@ -99,13 +99,13 @@ build-debug: check-env ## Build debug APK
 	@echo "$(CYAN)Building debug APK...$(NC)"
 	./gradlew assembleDebug --console=plain
 	@echo "$(GREEN)Debug APK built successfully!$(NC)"
-	@echo "$(CYAN)Location:$(NC) app/build/outputs/apk/debug/app-debug.apk"
+	@echo "$(CYAN)Location:$(NC) app/build/outputs/apk/debug/linuxswords-ChessClock-debug.apk"
 
 build-release: check-env ## Build release APK
 	@echo "$(CYAN)Building release APK...$(NC)"
 	./gradlew assembleRelease --console=plain
 	@echo "$(GREEN)Release APK built successfully!$(NC)"
-	@echo "$(CYAN)Location:$(NC) app/build/outputs/apk/release/app-release.apk"
+	@echo "$(CYAN)Location:$(NC) app/build/outputs/apk/release/linuxswords-ChessClock-release.apk"
 
 assemble: check-env ## Assemble all variants
 	@echo "$(CYAN)Assembling all APK variants...$(NC)"
