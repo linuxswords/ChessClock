@@ -155,6 +155,61 @@ quick: ## Quick build without tests (for rapid iteration)
 	./gradlew assembleDebug --console=plain
 	@echo "$(GREEN)Quick build completed!$(NC)"
 
+##@ Release
+
+release-check: ## Check if ready for release
+	@echo "$(CYAN)Pre-release checklist:$(NC)"
+	@echo ""
+	@make test > /dev/null 2>&1 && echo "$(GREEN)✓$(NC) Tests pass" || echo "$(RED)✗$(NC) Tests fail"
+	@make lint > /dev/null 2>&1 && echo "$(GREEN)✓$(NC) Lint passes" || echo "$(YELLOW)⚠$(NC) Lint has warnings"
+	@make build-release > /dev/null 2>&1 && echo "$(GREEN)✓$(NC) Release builds" || echo "$(RED)✗$(NC) Release build fails"
+	@echo ""
+	@echo "$(CYAN)Current version:$(NC)"
+	@grep "versionName" app/build.gradle | head -1 || echo "Not found"
+	@echo ""
+	@echo "$(CYAN)Recent tags:$(NC)"
+	@git tag -l --sort=-v:refname | head -5 || echo "No tags yet"
+
+release-tag: ## Create a release tag (usage: make release-tag VERSION=1.0.0)
+	@if [ -z "$(VERSION)" ]; then \
+		echo "$(RED)Error: VERSION not specified$(NC)"; \
+		echo "Usage: make release-tag VERSION=1.0.0"; \
+		exit 1; \
+	fi
+	@echo "$(CYAN)Creating release tag v$(VERSION)...$(NC)"
+	@git tag -a v$(VERSION) -m "Release v$(VERSION)"
+	@echo "$(GREEN)Tag v$(VERSION) created!$(NC)"
+	@echo ""
+	@echo "$(CYAN)Push tag to trigger release:$(NC)"
+	@echo "  git push origin v$(VERSION)"
+
+release-push: ## Push latest tag to trigger release
+	@LATEST_TAG=$$(git describe --tags --abbrev=0 2>/dev/null); \
+	if [ -z "$$LATEST_TAG" ]; then \
+		echo "$(RED)No tags found$(NC)"; \
+		exit 1; \
+	fi; \
+	echo "$(CYAN)Pushing tag $$LATEST_TAG to trigger release...$(NC)"; \
+	git push origin $$LATEST_TAG; \
+	echo "$(GREEN)Tag pushed! Release workflow starting...$(NC)"; \
+	echo "View at: https://github.com/linuxswords/ChessClock/actions"
+
+release-list: ## List all releases
+	@echo "$(CYAN)Releases:$(NC)"
+	@if command -v gh > /dev/null 2>&1; then \
+		gh release list; \
+	else \
+		echo "$(YELLOW)GitHub CLI (gh) not installed$(NC)"; \
+		echo "View at: https://github.com/linuxswords/ChessClock/releases"; \
+	fi
+
+release-view: ## View latest release
+	@if command -v gh > /dev/null 2>&1; then \
+		gh release view --web; \
+	else \
+		echo "$(CYAN)Latest release:$(NC) https://github.com/linuxswords/ChessClock/releases/latest"; \
+	fi
+
 ##@ CI/CD
 
 ci-status: ## Check GitHub Actions workflow status (requires gh CLI)

@@ -1,8 +1,11 @@
-# GitHub Actions Workflow
+# GitHub Actions Workflows
 
 [![Android CI](https://github.com/linuxswords/ChessClock/actions/workflows/android-ci.yml/badge.svg)](https://github.com/linuxswords/ChessClock/actions/workflows/android-ci.yml)
+[![Release](https://img.shields.io/github/v/release/linuxswords/ChessClock)](https://github.com/linuxswords/ChessClock/releases/latest)
 
-## Workflow: `android-ci.yml`
+## Workflows
+
+### 1. CI Workflow (`android-ci.yml`)
 
 **Triggers:**
 - Push to `main` or `develop`
@@ -77,3 +80,34 @@ make build          # Build only
 - 🟢 Green = Passing
 - 🔴 Red = Failing
 - 🟡 Yellow = Running
+
+---
+
+### 2. Release Workflow (`release.yml`)
+
+**Triggers:**
+- Push tags matching `v*.*.*` (e.g., `v1.0.0`)
+- Manual dispatch with version input
+
+**Jobs:**
+```
+Test → Lint → Build Release APK → Create GitHub Release → Upload APK
+```
+
+**Creates:**
+- GitHub Release page with changelog
+- APK download (`linuxswords-ChessClock-release.apk`)
+- Version tags and release notes
+
+**Usage:**
+
+```bash
+# Tag-based release (automatic)
+git tag -a v1.0.0 -m "Release v1.0.0"
+git push origin v1.0.0
+
+# Manual trigger (via GitHub UI)
+# Actions → Release → Run workflow → Enter version
+```
+
+See [RELEASE.md](../../RELEASE.md) for detailed release instructions.

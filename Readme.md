@@ -1,6 +1,8 @@
 # Chess Clock
 
 [![Android CI](https://github.com/linuxswords/ChessClock/actions/workflows/android-ci.yml/badge.svg)](https://github.com/linuxswords/ChessClock/actions/workflows/android-ci.yml)
+[![Release](https://img.shields.io/github/v/release/linuxswords/ChessClock)](https://github.com/linuxswords/ChessClock/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/linuxswords/ChessClock/total)](https://github.com/linuxswords/ChessClock/releases)
 
 Started as a weekend project, trying to build a chess clock app based on tilting the phone :P
 inspired by tempest clock.
@@ -8,6 +10,12 @@ inspired by tempest clock.
 
 A chess clock that works by tilting your phone. Put your phone onto something that can be tilted and instead of pressing
 a button on your chess clock.
+
+## Download
+
+📥 **[Download Latest Release](https://github.com/linuxswords/ChessClock/releases/latest)**
+
+Download the APK and install on your Android device (Android 5.0+).
 
 ## Features
 
@@ -42,7 +50,9 @@ make ci                     # Full CI (test + lint + build)
 make help                   # All commands
 ```
 
-See [TESTING.md](TESTING.md) for testing details.
+**Documentation:**
+- [TESTING.md](TESTING.md) - Testing guide
+- [RELEASE.md](RELEASE.md) - Release instructions
 
 ## ideas
 
